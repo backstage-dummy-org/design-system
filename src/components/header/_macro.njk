@@ -1,6 +1,6 @@
 {% macro onsHeader(params) %}
     {% from "components/button/_macro.njk" import onsButton %}
-    {% from "components/icons/_macro.njk" import onsIcon %}
+    {% from "components/icon/_macro.njk" import onsIcon %}
     {% from "components/autosuggest/_macro.njk" import onsAutosuggest %}
 
     {% set title_tag = "h1" if params.tilteAsH1 else "div" %}
@@ -79,7 +79,7 @@
                     <div class="ons-grid__col ons-col-auto ons-u-flex-shrink{% if params.titleLogo == 'census-logo-en' %} ons-header__title-census-logo-en{% endif %}">
                         {% if params.titleLogoHref is defined and params.titleLogoHref %}<a class="ons-header__title-link" href="{{ params.titleLogoHref }}">{% endif %}
                         {% if params.titleLogo is defined and params.titleLogo and params.titleLogoAlt is defined and params.titleLogoAlt %}
-                            {% from "components/icons/_macro.njk" import onsIcon %}
+                            {% from "components/icon/_macro.njk" import onsIcon %}
                             {{
                                 onsIcon({
                                     "iconType": params.titleLogo,
