@@ -45,7 +45,7 @@
                     {%- elif (item.index is defined and item.index and listEl != 'ol') or (item.index is defined and item.index and listEl == 'ol' and 'bare' in variants) -%}
                         {{- loop.index -}}.
                     {% elif params.iconPosition is defined and params.iconPosition == 'before' %}
-                        {% from "components/icons/_macro.njk" import onsIcon %}
+                        {% from "components/icon/_macro.njk" import onsIcon %}
                         {{
                             onsIcon({
                                 "iconType": iconType,
@@ -80,7 +80,7 @@
                     {%- elif (item.index is defined and item.index and listEl != 'ol') or (item.index is defined and item.index and listEl == 'ol' and 'bare' in variants) -%}
                         {{- loop.index -}}
                     {% elif params.iconPosition is defined and params.iconPosition == 'after' %}
-                        {% from "components/icons/_macro.njk" import onsIcon %}
+                        {% from "components/icon/_macro.njk" import onsIcon %}
                         {{
                             onsIcon({
                                 "iconType": iconType,

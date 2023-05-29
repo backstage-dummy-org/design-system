@@ -1,6 +1,6 @@
 {% macro onsRelatedContent(params) %}
 
-{% from "components/lists/_macro.njk" import onsList %}
+{% from "components/list/_macro.njk" import onsList %}
 
 {% if params is defined and params and params.classes is defined and params.classes %}
   {% set classes = ' ' + params.classes %}
