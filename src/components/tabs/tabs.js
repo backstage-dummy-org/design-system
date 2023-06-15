@@ -10,8 +10,9 @@ const classTabTitle = 'ons-tabs__title';
 const classTabList = 'ons-tabs__list';
 const classTabListItems = 'ons-tab__list-item';
 const classTabsPanel = 'ons-tabs__panel';
-
+const classTabListItemsRow = 'ons-tab__list-item--row';
 const matchMediaUtil = matchMedia;
+const test = true;
 
 export default class Tabs {
   constructor(component) {
@@ -29,46 +30,71 @@ export default class Tabs {
     this.jsTabListAsRowClass = 'ons-tabs__list--row';
     this.jsTabItemAsRowClass = 'ons-tab__list-item--row';
     this.jsTabAsListClass = 'ons-tab--row';
-
+    this.tabListItemsRow = [...component.getElementsByClassName(classTabListItemsRow)];
     this.noInitialActiveTab = this.component.getAttribute('data-no-initial-active-tab');
 
-    if (matchMediaUtil.hasMatchMedia()) {
-      this.setupViewportChecks();
-    } else {
+    // if (matchMediaUtil.hasMatchMedia()) {
+    //   this.setupViewportChecks();
+    // } else {
+    //   this.makeTabs();
+    // }
+    window.onload = () => {
       this.makeTabs();
-    }
+      this.tabListWidth = this.tabList[0].offsetWidth;
+      this.tabListItemsWidth = this.fetchElementWidth(this.tabListItems);
+      if (this.tabListItemsWidth <= this.tabListWidth) {
+        console.log('make tabs');
+        this.makeTabs();
+      } else {
+        console.log('make list');
+        this.makeList();
+      }
+    };
+
+    window.addEventListener('resize', () => {
+      this.makeTabs();
+      this.tabListWidth = this.tabList[0].offsetWidth;
+      this.tabListItemsWidth = this.fetchElementWidth(this.tabListItems);
+      if (this.tabListItemsWidth <= this.tabListWidth) {
+        console.log('make tabs');
+        this.makeTabs();
+      } else {
+        console.log('make list');
+        this.makeList();
+      }
+      return console.log(this.tabListItemsWidth);
+    });
   }
 
   // Set up checks for responsive functionality
   // The tabs will display as tabs for >40rem viewports
   // Tabs will display as a TOC list and show full content for <740px viewports
   // Aria tags are added only for >740px viewports
-  setupViewportChecks() {
-    window.addEventListener('resize', () => {
-      this.tabListWidth = this.tabList[0].offsetWidth;
-      this.tabListItemsWidth = () => {
-        let tabListWidth = 0;
-        this.tabListItems.forEach(tabListItem => {
-          return (tabListItem += tabListWidth);
-        });
-        return tabListWidth;
-      };
-      console.log(this.tabListItemsWidth());
+  // setupViewportChecks() {
+
+  //   this.viewport = matchMediaUtil('(min-width: 740px)');
+  //   this.viewport.addListener(this.checkViewport.bind(this));
+  //   this.checkViewport();
+  // }
+
+  fetchElementWidth(elementsArray) {
+    let elementWidth = 0;
+    elementsArray.forEach(element => {
+      elementWidth += element.offsetWidth;
     });
-    this.viewport = matchMediaUtil('(min-width: 740px)');
-    this.viewport.addListener(this.checkViewport.bind(this));
-    this.checkViewport();
+    return elementWidth;
   }
 
-  checkViewport() {
-    if (this.viewport.matches) {
-      console.log('make tabs');
-      this.makeTabs();
-    } else {
-      console.log('make list');
-      this.makeList();
-    }
-  }
+  // checkViewport() {
+
+  //   if (this.viewport.matches) {
+  //     console.log('make tabs');
+  //     this.makeTabs();
+  //   } else {
+  //     console.log('make list');
+  //     this.makeList();
+  //   }
+  // }
 
   makeTabs() {
     this.tabList[0].setAttribute('role', 'tablist');
