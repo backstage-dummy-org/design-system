@@ -44,6 +44,17 @@ export default class Tabs {
   // Tabs will display as a TOC list and show full content for <740px viewports
   // Aria tags are added only for >740px viewports
   setupViewportChecks() {
+    window.addEventListener('resize', () => {
+      this.tabListWidth = this.tabList[0].offsetWidth;
+      this.tabListItemsWidth = () => {
+        let tabListWidth = 0;
+        this.tabListItems.forEach(tabListItem => {
+          return (tabListItem += tabListWidth);
+        });
+        return tabListWidth;
+      };
+      console.log(this.tabListItemsWidth());
+    });
     this.viewport = matchMediaUtil('(min-width: 740px)');
     this.viewport.addListener(this.checkViewport.bind(this));
     this.checkViewport();
@@ -51,8 +62,10 @@ export default class Tabs {
 
   checkViewport() {
     if (this.viewport.matches) {
+      console.log('make tabs');
       this.makeTabs();
     } else {
+      console.log('make list');
       this.makeList();
     }
   }
