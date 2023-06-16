@@ -12,8 +12,6 @@ const classTabListItems = 'ons-tab__list-item';
 const classTabsPanel = 'ons-tabs__panel';
 const classTabListItemsRow = 'ons-tab__list-item--row';
 const matchMediaUtil = matchMedia;
-const test = true;
-
 export default class Tabs {
   constructor(component) {
     this.boundTabClick = this.onTabClick.bind(this);
@@ -38,31 +36,29 @@ export default class Tabs {
     // } else {
     //   this.makeTabs();
     // }
-    window.onload = () => {
+    window.addEventListener('load', () => {
       this.makeTabs();
+
       this.tabListWidth = this.tabList[0].offsetWidth;
       this.tabListItemsWidth = this.fetchElementWidth(this.tabListItems);
       if (this.tabListItemsWidth <= this.tabListWidth) {
-        console.log('make tabs');
         this.makeTabs();
       } else {
-        console.log('make list');
         this.makeList();
       }
-    };
+      console.log('here');
+    });
 
     window.addEventListener('resize', () => {
       this.makeTabs();
       this.tabListWidth = this.tabList[0].offsetWidth;
       this.tabListItemsWidth = this.fetchElementWidth(this.tabListItems);
       if (this.tabListItemsWidth <= this.tabListWidth) {
-        console.log('make tabs');
         this.makeTabs();
       } else {
-        console.log('make list');
         this.makeList();
       }
-      return console.log(this.tabListItemsWidth);
+      console.log(this.tabList);
     });
   }
 
