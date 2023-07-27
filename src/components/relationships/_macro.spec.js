@@ -6,7 +6,7 @@ import axe from '../../tests/helpers/axe';
 import { renderComponent, templateFaker } from '../../tests/helpers/rendering';
 
 const EXAMPLE_RELATIONSHIPS = {
-  playback: "Amanda Bloggs is Joe Bloggs' <em>…</em>",
+  playback: "Amanda Bloggs is Joe Bloggs' <strong>…</strong>",
   name: 'relationship',
   dontWrap: true,
   legendIsQuestionTitle: true,
@@ -18,8 +18,8 @@ const EXAMPLE_RELATIONSHIPS = {
         text: 'Grandparent',
       },
       attributes: {
-        'data-title': 'Thinking of Joe Bloggs, Amanda Bloggs is their <em>grandparents</em>',
-        'data-playback': "Amanda Bloggs is Joe Bloggs' <em>grandparents</em>",
+        'data-title': 'Thinking of Joe Bloggs, Amanda Bloggs is their <strong>grandparents</strong>',
+        'data-playback': "Amanda Bloggs is Joe Bloggs' <strong>grandparents</strong>",
       },
     },
     {
@@ -29,8 +29,8 @@ const EXAMPLE_RELATIONSHIPS = {
         text: 'Other relation',
       },
       attributes: {
-        'data-title': 'Thinking of Joe Bloggs, Amanda Bloggs is their <em>other relation</em>',
-        'data-playback': "Amanda Bloggs is Joe Bloggs' <em>other relation</em>",
+        'data-title': 'Thinking of Joe Bloggs, Amanda Bloggs is their <strong>other relation</strong>',
+        'data-playback': "Amanda Bloggs is Joe Bloggs' <strong>other relation</strong>",
       },
     },
     {
@@ -41,8 +41,8 @@ const EXAMPLE_RELATIONSHIPS = {
         description: 'Including foster child',
       },
       attributes: {
-        'data-title': 'Thinking of Joe Bloggs, Amanda Bloggs is <em>unrelated</em> to Joe Bloggs',
-        'data-playback': 'Amanda Bloggs is <em>unrelated</em> to Joe Bloggs',
+        'data-title': 'Thinking of Joe Bloggs, Amanda Bloggs is <strong>unrelated</strong> to Joe Bloggs',
+        'data-playback': 'Amanda Bloggs is <strong>unrelated</strong> to Joe Bloggs',
       },
     },
   ],
@@ -85,7 +85,7 @@ describe('macro: relationships', () => {
     const playbackContent = $('.ons-relationships__playback')
       .html()
       .trim();
-    expect(playbackContent).toBe("Amanda Bloggs is Joe Bloggs' <em>…</em>");
+    expect(playbackContent).toBe("Amanda Bloggs is Joe Bloggs' <strong>…</strong>");
   });
 
   it('has playback paragraph hidden initially', async () => {
