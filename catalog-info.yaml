@@ -10,4 +10,4 @@ metadata:
 spec:
   type: service
   lifecycle: production
-  owner: spp-sml
+  owner: "Design Team"
