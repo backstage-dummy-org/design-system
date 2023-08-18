@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  title: "ONS Design System"
+  name: "design-system"
+  description: "The ONS design system"
+  annotations:
+    github.com/project-slug: backstage-dummy-org/design-system
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: service
+  lifecycle: production
+  owner: spp-sml
