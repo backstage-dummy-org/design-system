@@ -6,7 +6,7 @@ metadata:
   description: "The ONS design system"
   annotations:
     github.com/project-slug: backstage-dummy-org/design-system
-    backstage.io/techdocs-ref: dir:.
+    # backstage.io/techdocs-ref: dir:.
 spec:
   type: service
   lifecycle: production
